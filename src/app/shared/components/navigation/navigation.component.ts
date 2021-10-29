@@ -13,5 +13,15 @@ export class NavigationComponent {
       icon: 'home',
       path: '',
     },
+    {
+      name: 'Kierowcy',
+      icon: 'people',
+      path: 'kierowcy',
+    },
+    {
+      name: 'Pojazdy',
+      icon: 'local_shipping',
+      path: 'pojazdy',
+    },
   ];
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Themes } from '../utils/enums/themes.enums';
+import { Themes } from '../utils/enums/themes.enum';
 
 @Injectable({
   providedIn: 'root',
