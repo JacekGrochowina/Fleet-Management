@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/+state/app.state';
-import { GetDrivers } from './drivers.actions';
+import { Driver } from '../utils/interfaces/driver.interface';
+import {
+  AddDriver,
+  DelDriver,
+  GetDrivers,
+  UpdateDriver,
+} from './drivers.actions';
 import {
   selectDriversAddError,
   selectDriversAddLoading,
@@ -27,23 +33,35 @@ export class DriversFacade {
   driversListError$ = this.store.select(selectDriversListError);
 
   // ========== Selectors Add
-  driversAddLoading$ = this.store.select(selectDriversAddLoading);
-  driversAddSuccess$ = this.store.select(selectDriversAddSuccess);
-  driversAddError$ = this.store.select(selectDriversAddError);
+  driverAddLoading$ = this.store.select(selectDriversAddLoading);
+  driverAddSuccess$ = this.store.select(selectDriversAddSuccess);
+  driverAddError$ = this.store.select(selectDriversAddError);
 
   // ========== Selectors Del
-  driversDelLoading$ = this.store.select(selectDriversDelLoading);
-  driversDelSuccess$ = this.store.select(selectDriversDelSuccess);
-  driversDelError$ = this.store.select(selectDriversDelError);
+  driverDelLoading$ = this.store.select(selectDriversDelLoading);
+  driverDelSuccess$ = this.store.select(selectDriversDelSuccess);
+  driverDelError$ = this.store.select(selectDriversDelError);
 
   // ========== Selectors Update
-  driversUpdateLoading$ = this.store.select(selectDriversUpdateLoading);
-  driversUpdateSuccess$ = this.store.select(selectDriversUpdateSuccess);
-  driversUpdateError$ = this.store.select(selectDriversUpdateError);
+  driverUpdateLoading$ = this.store.select(selectDriversUpdateLoading);
+  driverUpdateSuccess$ = this.store.select(selectDriversUpdateSuccess);
+  driverUpdateError$ = this.store.select(selectDriversUpdateError);
 
   constructor(private store: Store<AppState>) {}
 
   getDrivers(): void {
     this.store.dispatch(new GetDrivers());
+  }
+
+  addDriver(driver: Driver): void {
+    this.store.dispatch(new AddDriver(driver));
+  }
+
+  delDriver(driverID: number): void {
+    this.store.dispatch(new DelDriver(driverID));
+  }
+
+  updateDriver(driver: Driver): void {
+    this.store.dispatch(new UpdateDriver(driver));
   }
 }

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
 import { DriversFacade } from '../../+state/drivers.facade';
+import { Driver } from '../../utils/interfaces/driver.interface';
+import { AddEditDriverComponent } from '../add-driver/add-edit-driver.component';
 
 @Component({
   selector: 'app-drivers-table',
@@ -14,6 +19,21 @@ export class DriversTableComponent implements OnInit {
   driversListSuccess$ = this.driversFacade.driversListSuccess$;
   driversListError$ = this.driversFacade.driversListError$;
 
+  // ========== Selectors Add
+  driverAddLoading$ = this.driversFacade.driverAddLoading$;
+  driverAddSuccess$ = this.driversFacade.driverAddSuccess$;
+  driverAddError$ = this.driversFacade.driverAddError$;
+
+  // ========== Selectors Del
+  driverDelLoading$ = this.driversFacade.driverDelLoading$;
+  driverDelSuccess$ = this.driversFacade.driverDelSuccess$;
+  driverDelError$ = this.driversFacade.driverDelError$;
+
+  // ========== Selectors Update
+  driverUpdateLoading$ = this.driversFacade.driverUpdateLoading$;
+  driverUpdateSuccess$ = this.driversFacade.driverUpdateSuccess$;
+  driverUpdateError$ = this.driversFacade.driverUpdateError$;
+
   displayedColumns: string[] = [
     'name',
     'surname',
@@ -25,9 +45,38 @@ export class DriversTableComponent implements OnInit {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(private driversFacade: DriversFacade) {}
+  constructor(private driversFacade: DriversFacade, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.driversFacade.getDrivers();
+  }
+
+  editDriver(driver: Driver): void {
+    const dialogRef = this.dialog.open(AddEditDriverComponent, {
+      data: {
+        driver,
+        mode: AddEditMode.edit,
+      },
+      maxWidth: '500px',
+    });
+  }
+
+  delDriver(driverID: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Usuwanie kierowcy',
+        message: 'Czy napewno chcesz usunąć tego kierowcę?',
+        confirmLabel: 'Usuń',
+        dismissLabel: 'Anuluj',
+        isAsync: true,
+        close$: this.driverDelSuccess$,
+        loading$: this.driverDelLoading$,
+        errors$: this.driverDelError$,
+        confirmed: () => {
+          this.driversFacade.delDriver(driverID);
+        },
+      },
+      maxWidth: '400px',
+    });
   }
 }

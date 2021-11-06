@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,13 +37,19 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   exports: [
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     NavigationComponent,
     ToolbarComponent,
     PageWrapperComponent,
     FooterComponent,
     TableLoadingComponent,
   ],
+  providers: [MatSnackBarModule],
 })
 export class SharedModule {}

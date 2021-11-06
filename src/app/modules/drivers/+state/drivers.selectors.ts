@@ -63,7 +63,7 @@ export const selectDriversAddError = createSelector(
 // ========== Selectors Del
 const selectDriversDel = createSelector(
   selectDrivers,
-  (state: DriversState) => state.add
+  (state: DriversState) => state.del
 );
 
 // Loading
@@ -87,7 +87,7 @@ export const selectDriversDelError = createSelector(
 // ========== Selectors Update
 const selectDriversUpdate = createSelector(
   selectDrivers,
-  (state: DriversState) => state.add
+  (state: DriversState) => state.update
 );
 
 // Loading

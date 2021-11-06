@@ -1,3 +1,4 @@
+import { InitialLoadingHandler } from 'src/app/shared/utils/models/initial-loading-handler.model';
 import { DriversAction, DriversActionTypes } from './drivers.actions';
 import { driversInitialState, DriversState } from './drivers.state';
 
@@ -57,6 +58,12 @@ export function DriversReducer(
     case DriversActionTypes.addSuccess: {
       return {
         ...state,
+        list: {
+          ...state.list,
+          loading: true,
+          success: false,
+          error: null,
+        },
         add: {
           loading: false,
           success: true,
@@ -76,6 +83,13 @@ export function DriversReducer(
       };
     }
 
+    case DriversActionTypes.addClear: {
+      return {
+        ...state,
+        add: InitialLoadingHandler,
+      };
+    }
+
     // ========== Del Driver
     case DriversActionTypes.del: {
       return {
@@ -91,6 +105,12 @@ export function DriversReducer(
     case DriversActionTypes.delSuccess: {
       return {
         ...state,
+        list: {
+          ...state.list,
+          loading: true,
+          success: false,
+          error: null,
+        },
         del: {
           loading: false,
           success: true,
@@ -110,6 +130,13 @@ export function DriversReducer(
       };
     }
 
+    case DriversActionTypes.delClear: {
+      return {
+        ...state,
+        del: InitialLoadingHandler,
+      };
+    }
+
     // ========== Update Driver
     case DriversActionTypes.update: {
       return {
@@ -125,6 +152,12 @@ export function DriversReducer(
     case DriversActionTypes.updateSuccess: {
       return {
         ...state,
+        list: {
+          ...state.list,
+          loading: true,
+          success: false,
+          error: null,
+        },
         update: {
           loading: false,
           success: true,
@@ -141,6 +174,13 @@ export function DriversReducer(
           loading: false,
           error: action.payload.error,
         },
+      };
+    }
+
+    case DriversActionTypes.updateClear: {
+      return {
+        ...state,
+        update: InitialLoadingHandler,
       };
     }
 
