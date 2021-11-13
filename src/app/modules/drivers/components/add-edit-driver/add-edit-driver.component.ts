@@ -8,7 +8,7 @@ import { DriversFacade } from '../../+state/drivers.facade';
 import { AddEditDriverDialogData } from '../../utils/interfaces/add-edit-driver-dialog-data.interface';
 
 @Component({
-  selector: 'app-add-driver',
+  selector: 'app-add-edit-driver',
   templateUrl: './add-edit-driver.component.html',
   styleUrls: ['./add-edit-driver.component.scss'],
 })

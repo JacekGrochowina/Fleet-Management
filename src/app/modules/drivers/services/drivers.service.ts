@@ -10,7 +10,8 @@ export class DriversService {
   constructor(private http: HttpClient) {}
 
   getDrivers(): Observable<Driver[]> {
-    let url = `https://www.czprogramy.cba.pl/php/FleetManagement/GetDrivers.php`;
+    let url =
+      'https://www.czprogramy.cba.pl/php/FleetManagement/GetDrivers.php';
     return this.http.get<Driver[]>(url);
   }
 

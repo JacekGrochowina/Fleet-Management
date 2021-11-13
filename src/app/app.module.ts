@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { DriversEffects } from './modules/drivers/+state/drivers.effects';
+import { VehiclesEffects } from './modules/vehicles/+state/vehicles.effects';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -25,7 +26,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([DriversEffects]),
+    EffectsModule.forRoot([DriversEffects, VehiclesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

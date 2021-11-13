@@ -116,7 +116,7 @@ export class UpdateDriverClear implements Action {
   constructor() {}
 }
 
-export type DriversAction =
+export type DriversActions =
   | GetDrivers
   | GetDriversSuccess
   | GetDriversFail

@@ -10,7 +10,7 @@ import { DriversFacade } from './+state/drivers.facade';
 
 import { DriversComponent } from './drivers.component';
 import { DriversTableComponent } from './components/drivers-table/drivers-table.component';
-import { AddEditDriverComponent } from './components/add-driver/add-edit-driver.component';
+import { AddEditDriverComponent } from './components/add-edit-driver/add-edit-driver.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';

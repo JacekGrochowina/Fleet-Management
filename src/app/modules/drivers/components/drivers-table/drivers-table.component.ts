@@ -5,7 +5,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
 import { DriversFacade } from '../../+state/drivers.facade';
 import { Driver } from '../../utils/interfaces/driver.interface';
-import { AddEditDriverComponent } from '../add-driver/add-edit-driver.component';
+import { AddEditDriverComponent } from '../add-edit-driver/add-edit-driver.component';
 
 @Component({
   selector: 'app-drivers-table',
@@ -43,9 +43,10 @@ export class DriversTableComponent implements OnInit {
     'action',
   ];
 
-  private unsubscribe$ = new Subject<void>();
-
-  constructor(private driversFacade: DriversFacade, public dialog: MatDialog) {}
+  constructor(
+    private driversFacade: DriversFacade,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.driversFacade.getDrivers();
@@ -76,6 +77,7 @@ export class DriversTableComponent implements OnInit {
           this.driversFacade.delDriver(driverID);
         },
       },
+      width: '90%',
       maxWidth: '400px',
     });
   }

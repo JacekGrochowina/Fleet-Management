@@ -1,14 +1,14 @@
 import { InitialLoadingHandler } from 'src/app/shared/utils/models/initial-loading-handler.model';
-import { DriversActions, DriversActionTypes } from './drivers.actions';
-import { driversInitialState, DriversState } from './drivers.state';
+import { VehiclesActions, VehiclesActionTypes } from './vehicles.actions';
+import { vehiclesInitialState, VehiclesState } from './vehicles.state';
 
-export function DriversReducer(
-  state = driversInitialState,
-  action: DriversActions
-): DriversState {
+export function VehiclesReducer(
+  state = vehiclesInitialState,
+  action: VehiclesActions
+): VehiclesState {
   switch (action.type) {
-    // ========== Get Drivers
-    case DriversActionTypes.get: {
+    // ========== Get Vehicles
+    case VehiclesActionTypes.get: {
       return {
         ...state,
         list: {
@@ -20,7 +20,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.getSuccess: {
+    case VehiclesActionTypes.getSuccess: {
       return {
         ...state,
         list: {
@@ -32,7 +32,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.getFail: {
+    case VehiclesActionTypes.getFail: {
       return {
         ...state,
         list: {
@@ -43,8 +43,8 @@ export function DriversReducer(
       };
     }
 
-    // ========== Add Driver
-    case DriversActionTypes.add: {
+    // ========== Add Vehicle
+    case VehiclesActionTypes.add: {
       return {
         ...state,
         add: {
@@ -55,7 +55,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.addSuccess: {
+    case VehiclesActionTypes.addSuccess: {
       return {
         ...state,
         list: {
@@ -72,7 +72,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.addFail: {
+    case VehiclesActionTypes.addFail: {
       return {
         ...state,
         add: {
@@ -83,15 +83,15 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.addClear: {
+    case VehiclesActionTypes.addClear: {
       return {
         ...state,
         add: InitialLoadingHandler,
       };
     }
 
-    // ========== Del Driver
-    case DriversActionTypes.del: {
+    // ========== Del Vehicle
+    case VehiclesActionTypes.del: {
       return {
         ...state,
         del: {
@@ -102,7 +102,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.delSuccess: {
+    case VehiclesActionTypes.delSuccess: {
       return {
         ...state,
         list: {
@@ -119,7 +119,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.delFail: {
+    case VehiclesActionTypes.delFail: {
       return {
         ...state,
         del: {
@@ -130,15 +130,15 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.delClear: {
+    case VehiclesActionTypes.delClear: {
       return {
         ...state,
         del: InitialLoadingHandler,
       };
     }
 
-    // ========== Update Driver
-    case DriversActionTypes.update: {
+    // ========== Update Vehicle
+    case VehiclesActionTypes.update: {
       return {
         ...state,
         update: {
@@ -149,7 +149,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.updateSuccess: {
+    case VehiclesActionTypes.updateSuccess: {
       return {
         ...state,
         list: {
@@ -166,7 +166,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.updateFail: {
+    case VehiclesActionTypes.updateFail: {
       return {
         ...state,
         update: {
@@ -177,7 +177,7 @@ export function DriversReducer(
       };
     }
 
-    case DriversActionTypes.updateClear: {
+    case VehiclesActionTypes.updateClear: {
       return {
         ...state,
         update: InitialLoadingHandler,

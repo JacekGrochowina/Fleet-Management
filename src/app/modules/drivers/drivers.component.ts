@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
-import { DriversFacade } from './+state/drivers.facade';
-import { AddEditDriverComponent } from './components/add-driver/add-edit-driver.component';
+import { AddEditDriverComponent } from './components/add-edit-driver/add-edit-driver.component';
 import { AddEditDriverDialogData } from './utils/interfaces/add-edit-driver-dialog-data.interface';
 
 @Component({
@@ -11,12 +10,7 @@ import { AddEditDriverDialogData } from './utils/interfaces/add-edit-driver-dial
   styleUrls: ['./drivers.component.scss'],
 })
 export class DriversComponent implements OnInit {
-  // ========== Selectors Add
-  driverAddLoading$ = this.driversFacade.driverAddLoading$;
-  driverAddSuccess$ = this.driversFacade.driverAddSuccess$;
-  driverAddError$ = this.driversFacade.driverAddError$;
-
-  constructor(private driversFacade: DriversFacade, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -25,6 +19,7 @@ export class DriversComponent implements OnInit {
       data: {
         mode: AddEditMode.add,
       } as AddEditDriverDialogData,
+      width: '90%',
       maxWidth: '500px',
     });
   }

@@ -1,19 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-const ELEMENT_DATA = [
-  {
-    id: 1,
-    brand: 'Scania',
-    model: 'R420',
-    yearManufacture: '2011',
-    vin: 'YV1RS592472637050',
-    fuelType: 'diesel',
-    registrationNumber: 'EBE4033',
-    dateRegistration: '2011-04-24',
-    techReviewTimeInterval: 6,
-    techReviewKilometerInterval: 40000,
-  },
-];
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
+import { AddEditVehicleComponent } from './components/add-edit-vehicle/add-edit-vehicle.component';
+import { AddEditVehicleDialogData } from './utils/interfaces/add-edit-vehicle-dialog-data.interface';
 
 @Component({
   selector: 'app-vehicles',
@@ -21,21 +10,17 @@ const ELEMENT_DATA = [
   styleUrls: ['./vehicles.component.scss'],
 })
 export class VehiclesComponent implements OnInit {
-  displayedColumns: string[] = [
-    'brand',
-    'model',
-    'yearManufacture',
-    'vin',
-    'fuelType',
-    'registrationNumber',
-    'dateRegistration',
-    'techReviewTimeInterval',
-    'techReviewKilometerInterval',
-    'action',
-  ];
-  dataSource = ELEMENT_DATA;
-
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  openAddVehicleDialog(): void {
+    this.dialog.open(AddEditVehicleComponent, {
+      data: {
+        mode: AddEditMode.add,
+      } as AddEditVehicleDialogData,
+      width: '90%',
+      maxWidth: '500px',
+    });
+  }
 }

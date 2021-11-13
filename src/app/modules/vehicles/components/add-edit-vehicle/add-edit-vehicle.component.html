@@ -1,0 +1,174 @@
+<h1 mat-dialog-title>
+    {{isAddMode() ? 'Dodawanie pojazdu' : 'Edycja pojazdu'}}
+</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row no-gutters">
+            <div class="col-6 pr-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">
+                    <mat-label>Podaj markę</mat-label>
+                    <input
+                        matInput
+                        required
+                        cdkFocusInitial
+                        formControlName="brand"
+                        placeholder="Podaj markę">
+                    <mat-hint>Podaj imię</mat-hint>
+                    <mat-error *ngIf="form.controls.brand.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-6 pl-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj model</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="model"
+                        placeholder="Podaj model">
+                    <mat-hint>Podaj model</mat-hint>
+                    <mat-error *ngIf="form.controls.model.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-6 pr-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj rocznik</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="yearManufacture"
+                        placeholder="Podaj rocznik">
+                    <mat-hint>Podaj rocznik</mat-hint>
+                    <mat-error *ngIf="form.controls.yearManufacture.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-6 pl-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj vin</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="vin"
+                        placeholder="Podaj vin">
+                    <mat-hint>Podaj vin</mat-hint>
+                    <mat-error *ngIf="form.controls.vin.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-6 pr-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">
+                    <mat-label>Wybierz rodzaj paliwa</mat-label>
+                    <mat-select
+                        required
+                        formControlName="fuelType"
+                    >
+                        <mat-option value="oil">olej napędowy</mat-option>
+                        <mat-option value="gasoline">benzyna</mat-option>
+                        <mat-option value="lpg">LPG</mat-option>
+                    </mat-select>
+                    <mat-hint>Wybierz rodzaj paliwa</mat-hint>
+                    <mat-error *ngIf="form.controls.fuelType.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-6 pl-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj numer rejestracyjny</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="registrationNumber"
+                        placeholder="Podaj model">
+                    <mat-hint>Podaj numer rejestracyjny</mat-hint>
+                    <mat-error *ngIf="form.controls.registrationNumber.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-6 pr-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">
+                    <mat-label>Podaj datę rejestracji</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="dateRegistration"
+                        [matDatepicker]="dateRegistrationPicker">
+                    <mat-datepicker-toggle matSuffix [for]="dateRegistrationPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dateRegistrationPicker></mat-datepicker>
+                    <mat-hint>Podaj datę rejestracji</mat-hint>
+                    <mat-error *ngIf="form.controls.dateRegistration.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="col-6 pl-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj interwał czasowy przeglądu technicznego (liczba miesięcy)</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="techReviewTimeInterval"
+                        placeholder="Podaj interwał czasowy przeglądu technicznego">
+                    <mat-hint>Podaj interwał czasowy przeglądu technicznego</mat-hint>
+                    <mat-error *ngIf="form.controls.techReviewTimeInterval.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-6 pr-2">
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj interwał kilometrowy przeglądu technicznego</mat-label>
+                    <input
+                        matInput
+                        required
+                        formControlName="techReviewKilometerInterval"
+                        placeholder="Podaj interwał kilometrowy przeglądu technicznego">
+                    <mat-hint>Podaj interwał kilometrowy przeglądu technicznego</mat-hint>
+                    <mat-error *ngIf="form.controls.techReviewKilometerInterval.hasError('required')">
+                        Pole <strong>jest wymagane</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div mat-dialog-actions class="d-flex justify-content-end m-0 p-0">
+            <button mat-stroked-button mat-dialog-close color="primary">Anuluj</button>
+            <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!form.valid || (vehicleAddLoading$ | async) || (vehicleUpdateLoading$ | async)"
+                type="submit"
+                class="ml-2"
+            >
+                {{isAddMode() ? 'Dodaj' : 'Edytuj'}}
+                <mat-icon *ngIf="(vehicleAddLoading$ | async) || (vehicleUpdateLoading$ | async)" class="ml-1">
+                    <mat-spinner diameter="20"></mat-spinner>
+                </mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
