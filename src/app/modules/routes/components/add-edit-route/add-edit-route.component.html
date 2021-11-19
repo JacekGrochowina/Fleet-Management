@@ -1,0 +1,182 @@
+<h1 mat-dialog-title>
+    {{isAddMode() ? 'Dodawanie trasy' : 'Edycja trasy'}}
+</h1>
+
+<div mat-dialog-content>
+    <app-fluid-loading 
+        *ngIf="(driversListLoading$ | async) || (vehiclesListLoading$ | async)"
+        [height]="445"
+    ></app-fluid-loading>
+
+    <ng-container *ngIf="!(driversListLoading$ | async) && !(vehiclesListLoading$ | async)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Wybierz pojazd</mat-label>
+                <mat-select
+                    matInput
+                    required
+                    cdkFocusInitial
+                    formControlName="vehicle"
+                    placeholder="Pojazd"
+                >
+                    <mat-option>- Wyczyść -</mat-option>
+                    <mat-option
+                        *ngFor="let vehicle of vehiclesListItems$ | async"
+                        [value]="vehicle.id"
+                    >
+                        {{vehicle.brand}} {{vehicle.model}} | {{vehicle.registrationNumber}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>Wybierz pojazd</mat-hint>
+                <mat-error *ngIf="form.controls.vehicle.hasError('required')">
+                    Pole <strong>jest wymagane</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Wybierz kierowcę</mat-label>
+                <mat-select
+                    matInput
+                    required
+                    cdkFocusInitial
+                    formControlName="driver"
+                    placeholder="Kierowca"
+                >
+                    <mat-option>- Wyczyść -</mat-option>
+                    <mat-option
+                        *ngFor="let driver of driversListItems$ | async"
+                        [value]="driver.id"
+                    >
+                        {{driver.name}} {{driver.surname}} | {{driver.pesel}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>Wybierz kierowcę</mat-hint>
+                <mat-error *ngIf="form.controls.driver.hasError('required')">
+                    Pole <strong>jest wymagane</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="row no-gutters">
+                <div class="col-6 pr-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">
+                        <mat-label>Podaj datę wyjazdu</mat-label>
+                        <input
+                            matInput
+                            required
+                            formControlName="dateStart"
+                            [matDatepicker]="dateStartPicker">
+                        <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dateStartPicker></mat-datepicker>
+                        <mat-hint>Podaj datę wyjazdu</mat-hint>
+                        <mat-error *ngIf="form.controls.dateStart.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-6 pl-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">
+                        <mat-label>Podaj datę przyjazdu</mat-label>
+                        <input
+                            matInput
+                            required
+                            formControlName="dateFinish"
+                            [min]="form.controls.dateStart.value"
+                            [matDatepicker]="dateFinishPicker">
+                        <mat-datepicker-toggle matSuffix [for]="dateFinishPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dateFinishPicker></mat-datepicker>
+                        <mat-hint>Podaj datę przyjazdu</mat-hint>
+                        <mat-error *ngIf="form.controls.dateFinish.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col-6 pr-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                        <mat-label>Podaj miejsce wyjazdu</mat-label>
+                        <input
+                            matInput
+                            required
+                            formControlName="placeStart"
+                            placeholder="Miejsce wyjazdu">
+                        <mat-hint>Podaj miejsce wyjazdu</mat-hint>
+                        <mat-error *ngIf="form.controls.placeStart.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-6 pl-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                        <mat-label>Podaj miejsce przyjazdu</mat-label>
+                        <input
+                            matInput
+                            required
+                            formControlName="placeFinish"
+                            placeholder="Miejsce przyjazdu">
+                        <mat-hint>Podaj miejsce przyjazdu</mat-hint>
+                        <mat-error *ngIf="form.controls.placeFinish.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col-6 pr-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                        <mat-label>Podaj typ ładunku</mat-label>
+                        <input
+                            matInput
+                            required
+                            formControlName="loadType"
+                            placeholder="Typ ładunku">
+                        <mat-hint>Podaj typ ładunku</mat-hint>
+                        <mat-error *ngIf="form.controls.loadType.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-6 pl-2">
+                    <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                        <mat-label>Podaj długość trasy</mat-label>
+                        <input
+                            matInput
+                            required
+                            type="number"
+                            formControlName="lengthRoute"
+                            placeholder="Długość trasy">
+                        <span matSuffix>km &nbsp;</span>
+                        <mat-hint>Podaj długość trasy</mat-hint>
+                        <mat-error *ngIf="form.controls.lengthRoute.value < 0">
+                            Wartość nie może być <strong>mniejsza od 0</strong>
+                        </mat-error>
+                        <mat-error *ngIf="form.controls.lengthRoute.hasError('required')">
+                            Pole <strong>jest wymagane</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div mat-dialog-actions class="d-flex justify-content-end m-0 p-0">
+                <button mat-stroked-button mat-dialog-close color="primary">Anuluj</button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="!form.valid || !form.dirty || (routeAddLoading$ | async) || (routeUpdateLoading$ | async)"
+                    type="submit"
+                    class="ml-2"
+                >
+                    {{isAddMode() ? 'Dodaj' : 'Edytuj'}}
+                    <mat-icon *ngIf="(routeAddLoading$ | async) || (routeUpdateLoading$ | async)" class="ml-1">
+                        <mat-spinner diameter="20"></mat-spinner>
+                    </mat-icon>
+                </button>
+            </div>
+        </form>
+    </ng-container>
+</div>

@@ -1,0 +1,69 @@
+<app-table-loading *ngIf="(routesListLoading$ | async)"></app-table-loading>
+<ng-container *ngIf="!(routesListLoading$ | async)">
+    <table mat-table [dataSource]="dataSource" *ngIf="(routesListItems$ | async) as dataSource" class="w-100">
+    
+        <!-- Pojazd Column -->
+        <ng-container matColumnDef="vehicle">
+            <th mat-header-cell *matHeaderCellDef> Pojazd </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle.brand}} {{element.vehicle.model}} | {{element.vehicle.registrationNumber}} </td>
+        </ng-container>
+
+        <!-- Kierowca Column -->
+        <ng-container matColumnDef="driver">
+            <th mat-header-cell *matHeaderCellDef> Kierowca </th>
+            <td mat-cell *matCellDef="let element"> {{element.driver.name}} {{element.driver.surname}} </td>
+        </ng-container>
+
+        <!-- Data wyjazdu Column -->
+        <ng-container matColumnDef="dateStart">
+            <th mat-header-cell *matHeaderCellDef> Data wyjazdu </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateStart | date: 'yyyy-MM-dd'}} </td>
+        </ng-container>
+
+        <!-- Data przyjazdu Column -->
+        <ng-container matColumnDef="dateFinish">
+            <th mat-header-cell *matHeaderCellDef> Data przyjazdu </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateFinish | date: 'yyyy-MM-dd'}} </td>
+        </ng-container>
+
+        <!-- Miejsce wyjazdu Column -->
+        <ng-container matColumnDef="placeStart">
+            <th mat-header-cell *matHeaderCellDef> Miejsce wyjazdu </th>
+            <td mat-cell *matCellDef="let element"> {{element.placeStart}} </td>
+        </ng-container>
+
+        <!-- Miejsce przyjazdu Column -->
+        <ng-container matColumnDef="placeFinish">
+            <th mat-header-cell *matHeaderCellDef> Miejsce przyjazdu </th>
+            <td mat-cell *matCellDef="let element"> {{element.placeFinish}} </td>
+        </ng-container>
+
+        <!-- Ładunek Column -->
+        <ng-container matColumnDef="loadType">
+            <th mat-header-cell *matHeaderCellDef> Ładunek </th>
+            <td mat-cell *matCellDef="let element"> {{element.loadType}} </td>
+        </ng-container>
+
+        <!-- Długość trasy Column -->
+        <ng-container matColumnDef="lengthRoute">
+            <th mat-header-cell *matHeaderCellDef> Długość trasy </th>
+            <td mat-cell *matCellDef="let element"> {{element.lengthRoute}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="editRoute(element)" aria-label="Edytuj trasę">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="delRoute(element.id)" aria-label="Usuń trasę" class="ml-1">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>

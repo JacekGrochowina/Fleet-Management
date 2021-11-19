@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { createParams } from 'src/app/shared/utils/extensions/createParams';
 import { Driver } from '../utils/interfaces/driver.interface';
 
 @Injectable({
@@ -16,12 +17,13 @@ export class DriversService {
   }
 
   addDriver(driver: Driver): Observable<Driver> {
-    const params = new HttpParams()
-      .append('name', driver.name)
-      .append('surname', driver.surname)
-      .append('pesel', driver.pesel)
-      .append('hireDate', driver.hireDate)
-      .append('firedDate', driver.firedDate ? driver.firedDate : '');
+    // const params = new HttpParams()
+    //   .append('name', driver.name)
+    //   .append('surname', driver.surname)
+    //   .append('pesel', driver.pesel)
+    //   .append('hireDate', driver.hireDate)
+    //   .append('firedDate', driver.firedDate ? driver.firedDate : '');
+    const params = createParams(driver);
 
     let url =
       'https://www.czprogramy.cba.pl/php/FleetManagement/AddDrivers.php';
@@ -39,13 +41,7 @@ export class DriversService {
   }
 
   updateDriver(driver: Driver): Observable<Driver> {
-    const params = new HttpParams()
-      .append('id', String(driver.id))
-      .append('name', driver.name)
-      .append('surname', driver.surname)
-      .append('pesel', driver.pesel)
-      .append('hireDate', driver.hireDate)
-      .append('firedDate', driver.firedDate ? driver.firedDate : '');
+    const params = createParams(driver);
 
     let url =
       'https://www.czprogramy.cba.pl/php/FleetManagement/UpdateDrivers.php';

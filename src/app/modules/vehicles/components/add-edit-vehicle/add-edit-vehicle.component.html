@@ -44,9 +44,13 @@
                     <input
                         matInput
                         required
+                        [textMask]="{ mask: yearManufactureMask, guide: false }"
                         formControlName="yearManufacture"
                         placeholder="Podaj rocznik">
                     <mat-hint>Podaj rocznik</mat-hint>
+                    <mat-error *ngIf="!form.controls.yearManufacture.hasError('required') && form.controls.yearManufacture.value.length !== 4">
+                        Podaj <strong>poprawny</strong> rocznik
+                    </mat-error>
                     <mat-error *ngIf="form.controls.yearManufacture.hasError('required')">
                         Pole <strong>jest wymagane</strong>
                     </mat-error>
@@ -59,6 +63,7 @@
                     <input
                         matInput
                         required
+                        [textMask]="{ mask: vinMask, guide: false }"
                         formControlName="vin"
                         placeholder="Podaj vin">
                     <mat-hint>Podaj vin</mat-hint>
@@ -128,9 +133,14 @@
                     <input
                         matInput
                         required
+                        type="number"
                         formControlName="techReviewTimeInterval"
                         placeholder="Podaj interwał czasowy przeglądu technicznego">
+                    <span matSuffix>miesięcy &nbsp;</span>
                     <mat-hint>Podaj interwał czasowy przeglądu technicznego</mat-hint>
+                    <mat-error *ngIf="form.controls.techReviewTimeInterval.value < 0">
+                        Wartość nie może być <strong>mniejsza od 0</strong>
+                    </mat-error>
                     <mat-error *ngIf="form.controls.techReviewTimeInterval.hasError('required')">
                         Pole <strong>jest wymagane</strong>
                     </mat-error>
@@ -145,9 +155,14 @@
                     <input
                         matInput
                         required
+                        type="number"
                         formControlName="techReviewKilometerInterval"
                         placeholder="Podaj interwał kilometrowy przeglądu technicznego">
+                    <span matSuffix>km &nbsp;</span>
                     <mat-hint>Podaj interwał kilometrowy przeglądu technicznego</mat-hint>
+                    <mat-error *ngIf="form.controls.techReviewKilometerInterval.value < 0">
+                        Wartość nie może być <strong>mniejsza od 0</strong>
+                    </mat-error>
                     <mat-error *ngIf="form.controls.techReviewKilometerInterval.hasError('required')">
                         Pole <strong>jest wymagane</strong>
                     </mat-error>
@@ -160,7 +175,7 @@
             <button
                 mat-raised-button
                 color="primary"
-                [disabled]="!form.valid || (vehicleAddLoading$ | async) || (vehicleUpdateLoading$ | async)"
+                [disabled]="!form.valid || !form.dirty || (vehicleAddLoading$ | async) || (vehicleUpdateLoading$ | async)"
                 type="submit"
                 class="ml-2"
             >

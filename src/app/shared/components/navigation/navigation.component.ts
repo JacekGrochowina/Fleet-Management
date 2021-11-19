@@ -23,5 +23,10 @@ export class NavigationComponent {
       icon: 'local_shipping',
       path: 'pojazdy',
     },
+    {
+      name: 'Trasy',
+      icon: 'route',
+      path: 'trasy',
+    },
   ];
 }

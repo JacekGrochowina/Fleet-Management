@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FluidLoadingComponent } from './components/fluid-loading/fluid-loading.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PageWrapperComponent,
     FooterComponent,
     TableLoadingComponent,
+    FluidLoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PageWrapperComponent,
     FooterComponent,
     TableLoadingComponent,
+    FluidLoadingComponent,
   ],
   providers: [MatSnackBarModule],
 })

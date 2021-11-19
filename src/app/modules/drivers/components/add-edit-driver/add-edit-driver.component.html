@@ -55,7 +55,7 @@
             <input
                 matInput
                 required
-                cdkFocusInitial
+                [textMask]="{ mask: peselMask, guide: false }"
                 formControlName="pesel"
                 placeholder="Podaj pesel">
             <mat-hint>Podaj pesel</mat-hint>
@@ -90,6 +90,7 @@
                     <input
                         matInput
                         formControlName="firedDate"
+                        [min]="form.controls.hireDate.value"
                         [matDatepicker]="firedDatePicker">
                     <mat-datepicker-toggle matSuffix [for]="firedDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #firedDatePicker></mat-datepicker>
@@ -103,7 +104,7 @@
             <button
                 mat-raised-button
                 color="primary"
-                [disabled]="!form.valid || (driverAddLoading$ | async) || (driverUpdateLoading$ | async)"
+                [disabled]="!form.valid || !form.dirty || (driverAddLoading$ | async) || (driverUpdateLoading$ | async)"
                 type="submit"
                 class="ml-2"
             >

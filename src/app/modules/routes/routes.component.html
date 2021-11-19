@@ -1,0 +1,13 @@
+<app-page-wrapper>
+    <h1>Trasy</h1>
+    <mat-divider></mat-divider>
+
+    <div class="d-flex justify-content-end py-3">
+        <button mat-raised-button color="primary" (click)="openAddRouteDialog()">
+            Dodaj trasę
+            <mat-icon class="ml-1">route</mat-icon>
+        </button>
+    </div>
+
+    <app-routes-table></app-routes-table>
+</app-page-wrapper>

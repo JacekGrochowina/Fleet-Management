@@ -19,6 +19,11 @@ const routes: Routes = [
         (m) => m.VehiclesModule
       ),
   },
+  {
+    path: 'trasy',
+    loadChildren: () =>
+      import('./modules/routes/routes.module').then((m) => m.RoutesModule),
+  },
 ];
 
 @NgModule({

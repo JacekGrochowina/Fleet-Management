@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
+    this.themeService.setThemeOverlay(this.theme);
   }
 
   setTheme($event: boolean) {

@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
+import { Masks } from 'src/app/shared/utils/masks';
 import { DriversFacade } from '../../+state/drivers.facade';
 import { AddEditDriverDialogData } from '../../utils/interfaces/add-edit-driver-dialog-data.interface';
 
@@ -24,7 +25,7 @@ export class AddEditDriverComponent implements OnInit {
   driverUpdateError$ = this.driversFacade.driverUpdateError$;
 
   form!: FormGroup;
-
+  peselMask = Masks.pesel;
   private unsubscribe$ = new Subject<void>();
 
   constructor(

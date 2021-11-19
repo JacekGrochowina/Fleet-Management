@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { VehiclesRoutingModule } from './vehicles-routing.module';
+import { RoutesRoutingModule } from './routes-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { TextMaskModule } from 'angular2-text-mask';
 
-import { VehiclesComponent } from './vehicles.component';
-import { VehiclesTableComponent } from './components/vehicles-table/vehicles-table.component';
-import { AddEditVehicleComponent } from './components/add-edit-vehicle/add-edit-vehicle.component';
+import { RoutesComponent } from './routes.component';
+import { RoutesTableComponent } from './components/routes-table/routes-table.component';
+import { AddEditRouteComponent } from './components/add-edit-route/add-edit-route.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,17 +19,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [
-    VehiclesComponent,
-    VehiclesTableComponent,
-    AddEditVehicleComponent,
-  ],
+  declarations: [RoutesComponent, RoutesTableComponent, AddEditRouteComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    VehiclesRoutingModule,
+    RoutesRoutingModule,
     SharedModule,
-    TextMaskModule,
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
@@ -43,4 +37,4 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   providers: [MatDatepickerModule],
 })
-export class VehiclesModule {}
+export class RoutesModule {}

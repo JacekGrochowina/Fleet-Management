@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DriversRoutingModule } from './drivers-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-
-import { StoreModule } from '@ngrx/store';
-import { DriversReducer } from './+state/drivers.reducers';
-import { DriversFacade } from './+state/drivers.facade';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { DriversComponent } from './drivers.component';
 import { DriversTableComponent } from './components/drivers-table/drivers-table.component';
@@ -32,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     DriversRoutingModule,
     SharedModule,
+    TextMaskModule,
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
@@ -40,8 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    StoreModule.forFeature('drivers', DriversReducer),
   ],
-  providers: [MatDatepickerModule, DriversFacade],
+  providers: [MatDatepickerModule],
 })
 export class DriversModule {}

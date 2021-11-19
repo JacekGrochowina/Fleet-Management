@@ -1,13 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import * as moment from 'moment';
-import { Moment } from 'moment';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
+import { Masks } from 'src/app/shared/utils/masks';
 import { VehiclesFacade } from '../../+state/vehicles.facade';
 import { AddEditVehicleDialogData } from '../../utils/interfaces/add-edit-vehicle-dialog-data.interface';
+import { Vehicle } from '../../utils/interfaces/vehicle.interface';
 
 @Component({
   selector: 'app-add-edit-vehicle',
@@ -26,7 +26,8 @@ export class AddEditVehicleComponent implements OnInit {
   vehicleUpdateError$ = this.vehiclesFacade.vehicleUpdateError$;
 
   form!: FormGroup;
-
+  vinMask = Masks.vin;
+  yearManufactureMask = Masks.yearManufacture;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -59,13 +60,19 @@ export class AddEditVehicleComponent implements OnInit {
     this.form = this.fb.group({
       brand: ['', [Validators.required]],
       model: ['', [Validators.required]],
-      yearManufacture: ['', [Validators.required]],
+      yearManufacture: [
+        '',
+        [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
+      ],
       vin: ['', [Validators.required]],
       fuelType: ['', [Validators.required]],
       registrationNumber: ['', [Validators.required]],
       dateRegistration: ['', [Validators.required]],
-      techReviewTimeInterval: ['', [Validators.required]],
-      techReviewKilometerInterval: ['', [Validators.required]],
+      techReviewTimeInterval: ['', [Validators.required, Validators.min(0)]],
+      techReviewKilometerInterval: [
+        '',
+        [Validators.required, Validators.min(0)],
+      ],
     });
   }
 

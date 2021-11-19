@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { createParams } from 'src/app/shared/utils/extensions/createParams';
 import { Vehicle } from '../utils/interfaces/vehicle.interface';
 
 @Injectable({
@@ -16,19 +17,7 @@ export class VehiclesService {
   }
 
   addVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    const params = new HttpParams()
-      .append('brand', vehicle.brand)
-      .append('model', vehicle.model)
-      .append('yearManufacture', String(vehicle.yearManufacture))
-      .append('vin', vehicle.vin)
-      .append('fuelType', vehicle.fuelType)
-      .append('registrationNumber', vehicle.registrationNumber)
-      .append('dateRegistration', vehicle.dateRegistration)
-      .append('techReviewTimeInterval', String(vehicle.techReviewTimeInterval))
-      .append(
-        'techReviewKilometerInterval',
-        String(vehicle.techReviewKilometerInterval)
-      );
+    const params = createParams(vehicle);
 
     let url =
       'https://www.czprogramy.cba.pl/php/FleetManagement/AddVehicle.php';
@@ -45,20 +34,7 @@ export class VehiclesService {
   }
 
   updateVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    const params = new HttpParams()
-      .append('id', String(vehicle.id))
-      .append('brand', vehicle.brand)
-      .append('model', vehicle.model)
-      .append('yearManufacture', String(vehicle.yearManufacture))
-      .append('vin', vehicle.vin)
-      .append('fuelType', vehicle.fuelType)
-      .append('registrationNumber', vehicle.registrationNumber)
-      .append('dateRegistration', vehicle.dateRegistration)
-      .append('techReviewTimeInterval', String(vehicle.techReviewTimeInterval))
-      .append(
-        'techReviewKilometerInterval',
-        String(vehicle.techReviewKilometerInterval)
-      );
+    const params = createParams(vehicle);
 
     let url =
       'https://www.czprogramy.cba.pl/php/FleetManagement/UpdateVehicle.php';
