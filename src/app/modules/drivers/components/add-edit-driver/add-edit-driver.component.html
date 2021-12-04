@@ -68,35 +68,23 @@
         </mat-form-field>
 
         <div class="row no-gutters">
-            <div class="col-6 pr-2">
-                <mat-form-field appearance="fill" class="w-100 mb-2">
-                    <mat-label>Podaj datę zatrudnienia</mat-label>
-                    <input
-                        matInput
-                        required
-                        formControlName="hireDate"
-                        [matDatepicker]="hireDatePicker">
-                    <mat-datepicker-toggle matSuffix [for]="hireDatePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #hireDatePicker></mat-datepicker>
-                    <mat-hint>Podaj datę zatrudnienia</mat-hint>
-                    <mat-error *ngIf="form.controls.hireDate.hasError('required')">
-                        Pole <strong>jest wymagane</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="col-6 pl-2">
-                <mat-form-field appearance="fill" class="w-100 mb-2">
-                    <mat-label>Podaj datę zwolnienia</mat-label>
-                    <input
-                        matInput
-                        formControlName="firedDate"
-                        [min]="form.controls.hireDate.value"
-                        [matDatepicker]="firedDatePicker">
-                    <mat-datepicker-toggle matSuffix [for]="firedDatePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #firedDatePicker></mat-datepicker>
-                    <mat-hint>Podaj datę zwolnienia</mat-hint>
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                <mat-label>Podaj stawkę godzinową</mat-label>
+                <input
+                    matInput
+                    required
+                    type="number"
+                    formControlName="hourlyRate"
+                    placeholder="Podaj stawkę godzinową">
+                <span matSuffix>zł/h &nbsp;</span>
+                <mat-hint>Podaj stawkę godzinową</mat-hint>
+                <mat-error *ngIf="form.controls.hourlyRate.value < 0">
+                    Wartość nie może być <strong>mniejsza od 0</strong>
+                </mat-error>
+                <mat-error *ngIf="form.controls.hourlyRate.hasError('required')">
+                    Pole <strong>jest wymagane</strong>
+                </mat-error>
+            </mat-form-field>
         </div>
 
         <div mat-dialog-actions class="d-flex justify-content-end m-0 p-0">

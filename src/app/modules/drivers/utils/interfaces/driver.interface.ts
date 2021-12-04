@@ -3,6 +3,5 @@ export interface Driver {
   name: string;
   surname: string;
   pesel: string;
-  hireDate: string;
-  firedDate: string | null;
+  hourlyRate: string;
 }

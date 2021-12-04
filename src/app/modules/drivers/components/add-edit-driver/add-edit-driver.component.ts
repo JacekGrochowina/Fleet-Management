@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
 import { Masks } from 'src/app/shared/utils/masks';
+import { PeselUtil } from 'src/app/shared/utils/utils/pesel.util';
 import { DriversFacade } from '../../+state/drivers.facade';
 import { AddEditDriverDialogData } from '../../utils/interfaces/add-edit-driver-dialog-data.interface';
 
@@ -76,24 +77,17 @@ export class AddEditDriverComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(11),
+          Validators.minLength(PeselUtil.peselLength),
+          Validators.maxLength(PeselUtil.peselLength),
         ],
       ],
-      hireDate: ['', Validators.required],
-      firedDate: [''],
+      hourlyRate: ['', [Validators.required, Validators.min(0)]],
     });
   }
 
   private setFormValues(): void {
     if (this.data.driver) {
       this.form.patchValue(this.data.driver);
-      this.form.patchValue({
-        hireDate: new Date(this.data.driver.hireDate),
-        firedDate: this.data.driver.firedDate
-          ? new Date(this.data.driver.firedDate)
-          : null,
-      });
     }
   }
 

@@ -40,9 +40,8 @@ export class VehiclesTableComponent implements OnInit {
     'vin',
     'fuelType',
     'registrationNumber',
-    'dateRegistration',
-    'techReviewTimeInterval',
-    'techReviewKilometerInterval',
+    'avgFuelConsumption',
+    'vehicleType',
     'action',
   ];
 

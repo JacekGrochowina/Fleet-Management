@@ -6,7 +6,6 @@ export interface Vehicle {
   vin: string;
   fuelType: string;
   registrationNumber: string;
-  dateRegistration: string;
-  techReviewTimeInterval: number;
-  techReviewKilometerInterval: number;
+  avgFuelConsumption: string;
+  vehicleType: string;
 }

@@ -111,17 +111,20 @@
 
         <div class="row no-gutters">
             <div class="col-6 pr-2">
-                <mat-form-field appearance="fill" class="w-100 mb-2">
-                    <mat-label>Podaj datę rejestracji</mat-label>
+                <mat-form-field appearance="fill" class="w-100 mb-2">                    
+                    <mat-label>Podaj średnie spalanie</mat-label>
                     <input
                         matInput
                         required
-                        formControlName="dateRegistration"
-                        [matDatepicker]="dateRegistrationPicker">
-                    <mat-datepicker-toggle matSuffix [for]="dateRegistrationPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #dateRegistrationPicker></mat-datepicker>
-                    <mat-hint>Podaj datę rejestracji</mat-hint>
-                    <mat-error *ngIf="form.controls.dateRegistration.hasError('required')">
+                        type="number"
+                        formControlName="avgFuelConsumption"
+                        placeholder="Podaj średnie spalanie">
+                    <span matSuffix>l/100km &nbsp;</span>
+                    <mat-hint>Podaj średnie spalanie</mat-hint>
+                    <mat-error *ngIf="form.controls.avgFuelConsumption.value < 0">
+                        Wartość nie może być <strong>mniejsza od 0</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.controls.avgFuelConsumption.hasError('required')">
                         Pole <strong>jest wymagane</strong>
                     </mat-error>
                 </mat-form-field>
@@ -129,26 +132,22 @@
 
             <div class="col-6 pl-2">
                 <mat-form-field appearance="fill" class="w-100 mb-2">                    
-                    <mat-label>Podaj interwał czasowy przeglądu technicznego (liczba miesięcy)</mat-label>
+                    <mat-label>Podaj typ pojazdu</mat-label>
                     <input
                         matInput
                         required
-                        type="number"
-                        formControlName="techReviewTimeInterval"
-                        placeholder="Podaj interwał czasowy przeglądu technicznego">
+                        formControlName="vehicleType"
+                        placeholder="Podaj typ pojazdu">
                     <span matSuffix>miesięcy &nbsp;</span>
-                    <mat-hint>Podaj interwał czasowy przeglądu technicznego</mat-hint>
-                    <mat-error *ngIf="form.controls.techReviewTimeInterval.value < 0">
-                        Wartość nie może być <strong>mniejsza od 0</strong>
-                    </mat-error>
-                    <mat-error *ngIf="form.controls.techReviewTimeInterval.hasError('required')">
+                    <mat-hint>Podaj typ pojazdu</mat-hint>
+                    <mat-error *ngIf="form.controls.vehicleType.hasError('required')">
                         Pole <strong>jest wymagane</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
         </div>
 
-        <div class="row no-gutters">
+        <!-- <div class="row no-gutters">
             <div class="col-6 pr-2">
                 <mat-form-field appearance="fill" class="w-100 mb-2">                    
                     <mat-label>Podaj interwał kilometrowy przeglądu technicznego</mat-label>
@@ -168,7 +167,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-        </div>
+        </div> -->
 
         <div mat-dialog-actions class="d-flex justify-content-end m-0 p-0">
             <button mat-stroked-button mat-dialog-close color="primary">Anuluj</button>

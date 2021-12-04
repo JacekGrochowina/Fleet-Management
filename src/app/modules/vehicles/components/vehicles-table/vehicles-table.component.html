@@ -38,22 +38,16 @@
             <td mat-cell *matCellDef="let element"> {{element.registrationNumber}} </td>
         </ng-container>
 
-        <!-- Data rejestracji Column -->
-        <ng-container matColumnDef="dateRegistration">
-            <th mat-header-cell *matHeaderCellDef> Data rejestracji </th>
-            <td mat-cell *matCellDef="let element"> {{element.dateRegistration | date: 'yyyy-MM-dd'}} </td>
+        <!-- Średnie spalanie Column -->
+        <ng-container matColumnDef="avgFuelConsumption">
+            <th mat-header-cell *matHeaderCellDef> Średnie spalanie </th>
+            <td mat-cell *matCellDef="let element"> {{element.avgFuelConsumption}} l. </td>
         </ng-container>
 
-        <!-- Interwał czasowy przeglądu technicznego Column -->
-        <ng-container matColumnDef="techReviewTimeInterval">
-            <th mat-header-cell *matHeaderCellDef> Interwał czasowy przeglądu technicznego </th>
-            <td mat-cell *matCellDef="let element"> {{element.techReviewTimeInterval}} </td>
-        </ng-container>
-
-        <!-- Interwał kilometrowy przeglądu technicznego Column -->
-        <ng-container matColumnDef="techReviewKilometerInterval">
-            <th mat-header-cell *matHeaderCellDef> Interwał kilometrowy przeglądu technicznego </th>
-            <td mat-cell *matCellDef="let element"> {{element.techReviewKilometerInterval}} </td>
+        <!-- Typ pojazdu Column -->
+        <ng-container matColumnDef="vehicleType">
+            <th mat-header-cell *matHeaderCellDef> Typ pojazdu </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicleType}} </td>
         </ng-container>
 
         <!-- Action Column -->

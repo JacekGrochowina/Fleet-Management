@@ -38,8 +38,7 @@ export class DriversTableComponent implements OnInit {
     'name',
     'surname',
     'pesel',
-    'hireDate',
-    'firedDate',
+    'hourlyRate',
     'action',
   ];
 

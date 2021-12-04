@@ -67,21 +67,14 @@ export class AddEditVehicleComponent implements OnInit {
       vin: ['', [Validators.required]],
       fuelType: ['', [Validators.required]],
       registrationNumber: ['', [Validators.required]],
-      dateRegistration: ['', [Validators.required]],
-      techReviewTimeInterval: ['', [Validators.required, Validators.min(0)]],
-      techReviewKilometerInterval: [
-        '',
-        [Validators.required, Validators.min(0)],
-      ],
+      avgFuelConsumption: ['', [Validators.required, Validators.min(0)]],
+      vehicleType: ['', [Validators.required]],
     });
   }
 
   private setFormValues(): void {
     if (this.data.vehicle) {
       this.form.patchValue(this.data.vehicle);
-      this.form.patchValue({
-        dateRegistration: new Date(this.data.vehicle.dateRegistration),
-      });
     }
   }
 
