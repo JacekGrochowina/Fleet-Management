@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FluidLoadingComponent } from './components/fluid-loading/fluid-loading.component';
+import { ErrorHandlerComponent } from './components/error-handler/error-handler.component';
+import { TableEmptyComponent } from './components/table-empty/table-empty.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FluidLoadingComponent } from './components/fluid-loading/fluid-loading.
     FooterComponent,
     TableLoadingComponent,
     FluidLoadingComponent,
+    ErrorHandlerComponent,
+    TableEmptyComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,8 @@ import { FluidLoadingComponent } from './components/fluid-loading/fluid-loading.
     FooterComponent,
     TableLoadingComponent,
     FluidLoadingComponent,
+    ErrorHandlerComponent,
+    TableEmptyComponent,
   ],
   providers: [MatSnackBarModule],
 })

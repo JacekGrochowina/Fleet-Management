@@ -9,6 +9,7 @@
     ></app-fluid-loading>
 
     <ng-container *ngIf="!(driversListLoading$ | async) && !(vehiclesListLoading$ | async)">
+        <app-error-handler [error]="isAddMode() ? routeAddError$ : routeUpdateError$"></app-error-handler>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Wybierz pojazd</mat-label>
@@ -64,6 +65,7 @@
                             matInput
                             required
                             formControlName="dateStart"
+                            [max]="form.controls.dateFinish.value"
                             [matDatepicker]="dateStartPicker">
                         <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
                         <mat-datepicker #dateStartPicker></mat-datepicker>

@@ -1,0 +1,13 @@
+.table-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 96px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ligth2);
+}
+
+.table-empty > p {
+  margin: 0;
+}

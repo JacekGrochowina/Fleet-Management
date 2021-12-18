@@ -38,7 +38,7 @@ export function VehiclesReducer(
         list: {
           ...state.list,
           loading: false,
-          error: action.payload.error,
+          error: action.payload,
         },
       };
     }
@@ -78,7 +78,7 @@ export function VehiclesReducer(
         add: {
           ...state.add,
           loading: false,
-          error: action.payload.error,
+          error: action.payload,
         },
       };
     }
@@ -125,7 +125,7 @@ export function VehiclesReducer(
         del: {
           ...state.add,
           loading: false,
-          error: action.payload.error,
+          error: action.payload,
         },
       };
     }
@@ -172,7 +172,7 @@ export function VehiclesReducer(
         update: {
           ...state.add,
           loading: false,
-          error: action.payload.error,
+          error: action.payload,
         },
       };
     }

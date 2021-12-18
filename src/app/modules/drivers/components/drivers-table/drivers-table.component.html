@@ -1,6 +1,12 @@
 <app-table-loading *ngIf="(driversListLoading$ | async)"></app-table-loading>
+<app-error-handler [error]="driversListError$"></app-error-handler>
 <ng-container *ngIf="!(driversListLoading$ | async)">
-    <table mat-table [dataSource]="dataSource" *ngIf="(driversListItems$ | async) as dataSource" class="w-100">
+    <table
+        mat-table
+        [dataSource]="dataSource"
+        *ngIf="(driversListItems$ | async) || (driversListItems$ | async) as dataSource"
+        class="w-100"
+    >
     
         <!-- Imie Column -->
         <ng-container matColumnDef="name">
@@ -42,4 +48,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
 </ng-container>
+<app-table-empty *ngIf="!(driversListLoading$ | async) && (driversListItems$ | async)?.length === 0"></app-table-empty>

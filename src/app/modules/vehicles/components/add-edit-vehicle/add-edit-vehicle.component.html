@@ -3,6 +3,7 @@
 </h1>
 
 <div mat-dialog-content>
+    <app-error-handler [error]="isAddMode() ? vehicleAddError$ : vehicleUpdateError$"></app-error-handler>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row no-gutters">
             <div class="col-6 pr-2">
@@ -133,12 +134,14 @@
             <div class="col-6 pl-2">
                 <mat-form-field appearance="fill" class="w-100 mb-2">                    
                     <mat-label>Podaj typ pojazdu</mat-label>
-                    <input
-                        matInput
+                    <mat-select
                         required
                         formControlName="vehicleType"
-                        placeholder="Podaj typ pojazdu">
-                    <span matSuffix>miesięcy &nbsp;</span>
+                    >
+                        <mat-option value="tir">TIR</mat-option>
+                        <mat-option value="van">furgonetka</mat-option>
+                        <mat-option value="car">osobowy</mat-option>
+                    </mat-select>
                     <mat-hint>Podaj typ pojazdu</mat-hint>
                     <mat-error *ngIf="form.controls.vehicleType.hasError('required')">
                         Pole <strong>jest wymagane</strong>
@@ -146,28 +149,6 @@
                 </mat-form-field>
             </div>
         </div>
-
-        <!-- <div class="row no-gutters">
-            <div class="col-6 pr-2">
-                <mat-form-field appearance="fill" class="w-100 mb-2">                    
-                    <mat-label>Podaj interwał kilometrowy przeglądu technicznego</mat-label>
-                    <input
-                        matInput
-                        required
-                        type="number"
-                        formControlName="techReviewKilometerInterval"
-                        placeholder="Podaj interwał kilometrowy przeglądu technicznego">
-                    <span matSuffix>km &nbsp;</span>
-                    <mat-hint>Podaj interwał kilometrowy przeglądu technicznego</mat-hint>
-                    <mat-error *ngIf="form.controls.techReviewKilometerInterval.value < 0">
-                        Wartość nie może być <strong>mniejsza od 0</strong>
-                    </mat-error>
-                    <mat-error *ngIf="form.controls.techReviewKilometerInterval.hasError('required')">
-                        Pole <strong>jest wymagane</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div> -->
 
         <div mat-dialog-actions class="d-flex justify-content-end m-0 p-0">
             <button mat-stroked-button mat-dialog-close color="primary">Anuluj</button>

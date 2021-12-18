@@ -97,4 +97,17 @@ export class VehiclesTableComponent implements OnInit {
         return 'inny';
     }
   }
+
+  displayVehicleType(value: string): string {
+    switch (value) {
+      case 'tir':
+        return 'TIR';
+      case 'van':
+        return 'furgonetka';
+      case 'car':
+        return 'osobowy';
+      default:
+        return 'inny';
+    }
+  }
 }

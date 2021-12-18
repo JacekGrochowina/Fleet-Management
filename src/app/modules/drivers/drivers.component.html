@@ -2,7 +2,27 @@
     <h1>Kierowcy</h1>
     <mat-divider></mat-divider>
 
-    <div class="d-flex justify-content-end py-3">
+    <div class="d-flex justify-content-between align-items-start py-3">
+        <form [formGroup]="formSearch">
+            <mat-form-field class="app-input-search" appearance="fill">
+                <mat-label>Wyszukaj...</mat-label>
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput type="text" formControlName="search">
+                <button
+                    *ngIf="formSearch.controls.search.value.length > 0"
+                    (click)="clearSearch()"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="formSearch.controls.search.value.length < 3">
+                    Pole musi mieć <strong>co najmniej 3 znaki</strong>
+                </mat-error>
+            </mat-form-field>
+        </form>
+
         <button mat-raised-button color="primary" (click)="openAddDriverDialog()">
             Dodaj kierowcę
             <mat-icon class="ml-1">person_add</mat-icon>

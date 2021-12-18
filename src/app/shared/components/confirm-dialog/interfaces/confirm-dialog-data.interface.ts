@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ConfirmDialogData {
@@ -8,6 +9,6 @@ export interface ConfirmDialogData {
   isAsync?: boolean;
   close$?: Observable<boolean>;
   loading$?: Observable<boolean>;
-  errors$?: any;
+  errors$?: HttpErrorResponse;
   confirmed: Function;
 }

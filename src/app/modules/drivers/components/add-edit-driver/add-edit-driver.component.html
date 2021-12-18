@@ -3,6 +3,7 @@
 </h1>
 
 <div mat-dialog-content>
+    <app-error-handler [error]="isAddMode() ? driverAddError$ : driverUpdateError$"></app-error-handler>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row no-gutters">
             <div class="col-6 pr-2">

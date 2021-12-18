@@ -1,4 +1,5 @@
 <app-table-loading *ngIf="(vehiclesListLoading$ | async)"></app-table-loading>
+<app-error-handler [error]="vehiclesListError$"></app-error-handler>
 <ng-container *ngIf="!(vehiclesListLoading$ | async)">
     <table mat-table [dataSource]="dataSource" *ngIf="(vehiclesListItems$ | async) as dataSource" class="w-100">
     
@@ -47,7 +48,7 @@
         <!-- Typ pojazdu Column -->
         <ng-container matColumnDef="vehicleType">
             <th mat-header-cell *matHeaderCellDef> Typ pojazdu </th>
-            <td mat-cell *matCellDef="let element"> {{element.vehicleType}} </td>
+            <td mat-cell *matCellDef="let element"> {{displayVehicleType(element.vehicleType)}} </td>
         </ng-container>
 
         <!-- Action Column -->
@@ -67,3 +68,4 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </ng-container>
+<app-table-empty *ngIf="!(vehiclesListLoading$ | async) && (vehiclesListItems$ | async)?.length === 0"></app-table-empty>

@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { createParams } from 'src/app/shared/utils/extensions/createParams';
 import { Vehicle } from '../utils/interfaces/vehicle.interface';
+import { ConfigAPI as api } from '../../../shared/utils/api/config';
 
 @Injectable({
   providedIn: 'root',
@@ -11,33 +11,29 @@ export class VehiclesService {
   constructor(private http: HttpClient) {}
 
   getVehicles(): Observable<Vehicle[]> {
-    let url =
-      'https://www.czprogramy.cba.pl/php/FleetManagement/GetVehicles.php';
-    return this.http.get<Vehicle[]>(url);
+    let url = `${api.apiURL}/api/vehicle/read.php`;
+    return this.http.get<Vehicle[]>(url, api.headers);
   }
 
   addVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    const params = createParams(vehicle);
-
-    let url =
-      'https://www.czprogramy.cba.pl/php/FleetManagement/AddVehicle.php';
-    return this.http.post<Vehicle>(url, JSON.stringify(vehicle), {
-      params,
-    });
+    let url = `${api.apiURL}/api/vehicle/create.php`;
+    return this.http.post<Vehicle>(url, vehicle, api.headers);
   }
 
   delVehicle(vehicleID: number): Observable<number> {
-    const params = new HttpParams().append('id', String(vehicleID));
-    let url =
-      'https://www.czprogramy.cba.pl/php/FleetManagement/DeleteVehicle.php';
-    return this.http.delete<number>(url, { params });
+    const options = {
+      ...api.headers,
+      body: {
+        id: vehicleID,
+      },
+    };
+
+    let url = `${api.apiURL}/api/vehicle/delete.php`;
+    return this.http.delete<number>(url, options);
   }
 
   updateVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    const params = createParams(vehicle);
-
-    let url =
-      'https://www.czprogramy.cba.pl/php/FleetManagement/UpdateVehicle.php';
-    return this.http.put<Vehicle>(url, JSON.stringify(vehicle), { params });
+    let url = `${api.apiURL}/api/vehicle/update.php`;
+    return this.http.put<Vehicle>(url, vehicle, api.headers);
   }
 }
