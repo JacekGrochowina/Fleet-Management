@@ -4,7 +4,7 @@
     <mat-list-item
         *ngFor="let navItem of navList"
         routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
+        [routerLinkActiveOptions]="navItem.path === '' ? {exact: true} : {exact: false}"
         class="nav-item"
     >
         <a [routerLink]="navItem.path" class="nav-link">

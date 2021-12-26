@@ -1,0 +1,18 @@
+<div class="subpage-wrapper">
+    <div class="subpage-wrapper__header d-flex p-2">
+        <div class="mr-3">
+            <mat-icon
+                color="primary"
+                class="button-back"
+                (click)="goToBack()"
+            >chevron_left</mat-icon>
+        </div>
+        <div>
+            <h2 class="mb-0">Dodaj trasę {{title}}</h2>
+        </div>
+    </div>
+
+    <div class="subpage-wrapper__content my-4">
+        <ng-content></ng-content>
+    </div>
+</div>

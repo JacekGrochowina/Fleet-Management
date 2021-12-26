@@ -1,6 +1,13 @@
 <app-page-wrapper>
-    <h1>Domowa</h1>
+    <h1>Podsumowanie</h1>
     <mat-divider></mat-divider>
 
-    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab nisi, dicta laboriosam corporis eaque in fuga placeat aspernatur, dolor velit ea nemo laborum unde, repellendus dolorum. Atque et iste labore aliquid, eveniet possimus in molestiae esse magni ex voluptatem saepe commodi cum nostrum suscipit velit necessitatibus quidem libero. Nemo, corrupti!</p>
+    <div class="d-flex justify-content-end py-3">
+        <button mat-raised-button color="primary" (click)="goToAddRoute()">
+            Dodaj trasę
+            <mat-icon class="ml-1">route</mat-icon>
+        </button>
+    </div>
+
+    <app-routes-overview-table></app-routes-overview-table>
 </app-page-wrapper>

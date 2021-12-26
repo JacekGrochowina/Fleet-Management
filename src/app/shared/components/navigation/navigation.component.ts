@@ -9,9 +9,14 @@ import { navItem } from './interfaces/nav-item.interface';
 export class NavigationComponent {
   navList: navItem[] = [
     {
-      name: 'Domowa',
-      icon: 'home',
+      name: 'Podsumowanie',
+      icon: 'analytics',
       path: '',
+    },
+    {
+      name: 'Trasy',
+      icon: 'route',
+      path: 'trasy',
     },
     {
       name: 'Kierowcy',
@@ -22,11 +27,6 @@ export class NavigationComponent {
       name: 'Pojazdy',
       icon: 'local_shipping',
       path: 'pojazdy',
-    },
-    {
-      name: 'Trasy',
-      icon: 'route',
-      path: 'trasy',
     },
   ];
 }

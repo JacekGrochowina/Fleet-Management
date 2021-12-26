@@ -1,0 +1,29 @@
+.subpage-wrapper__header {
+  border-bottom: 1px solid var(--ligth3);
+}
+
+.subpage-wrapper__content {
+}
+
+.button-back {
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: translateX(-5px);
+    animation: bounce 0.75s infinite;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

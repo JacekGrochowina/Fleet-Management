@@ -1,3 +1,10 @@
-<mat-card class="m-5">
+<mat-card
+    [class]="maxWidth ? 'my-5' : 'm-5'"
+    [style]="
+        maxWidth ? 
+        'max-width: ' + maxWidth + 'px;' +
+        'margin: 0 auto;'
+        : null
+    ">
     <ng-content></ng-content>
 </mat-card>

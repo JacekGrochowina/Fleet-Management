@@ -1,0 +1,57 @@
+<app-table-loading *ngIf="(routesListLoading$ | async)"></app-table-loading>
+<app-error-handler [error]="routesListError$"></app-error-handler>
+<ng-container *ngIf="!(routesListLoading$ | async)">
+    <table mat-table [dataSource]="dataSource" *ngIf="(routesListItems$ | async) as dataSource" class="w-100">
+
+        <!-- Kierunek Column -->
+        <ng-container matColumnDef="destination">
+            <th mat-header-cell *matHeaderCellDef> Kierunek </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.placeStart}} <mat-icon class="destination__arrow">chevron_right</mat-icon> {{element.placeFinish}} 
+            </td>
+        </ng-container>
+
+        <!-- Daty Column -->
+        <ng-container matColumnDef="dateRange">
+            <th mat-header-cell *matHeaderCellDef> Data </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.dateStart | date: 'yyyy-MM-dd'}} <mat-icon class="destination__arrow">chevron_right</mat-icon> {{element.dateFinish | date: 'yyyy-MM-dd'}} 
+            </td>
+        </ng-container>
+
+        <!-- Kierowca Column -->
+        <ng-container matColumnDef="driver">
+            <th mat-header-cell *matHeaderCellDef> Kierowca </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.driver.name}} {{element.driver.surname}} 
+            </td>
+        </ng-container>
+
+        <!-- Przychód Column -->
+        <ng-container matColumnDef="incomeExpedition">
+            <th mat-header-cell *matHeaderCellDef> Przychód </th>
+            <td mat-cell *matCellDef="let element"> 
+                <span class="destination__incomeExpedition">{{element.incomeExpedition}} zł</span>
+            </td>
+        </ng-container>
+
+        <!-- Wydatki Column -->
+        <ng-container matColumnDef="expensesExpedition">
+            <th mat-header-cell *matHeaderCellDef> Koszty </th>
+            <td mat-cell *matCellDef="let element"> 
+                <span class="destination__expensesExpedition">{{element.expensesExpedition}} zł</span>
+            </td>
+        </ng-container>
+
+        <!-- Zysk Column -->
+        <ng-container matColumnDef="profitExpedition">
+            <th mat-header-cell *matHeaderCellDef> Zysk </th>
+            <td mat-cell *matCellDef="let element"> 
+                <span class="destination__profitExpedition">{{element.profitExpedition}} zł</span>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>

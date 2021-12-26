@@ -17,9 +17,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { FluidLoadingComponent } from './components/fluid-loading/fluid-loading.component';
 import { ErrorHandlerComponent } from './components/error-handler/error-handler.component';
 import { TableEmptyComponent } from './components/table-empty/table-empty.component';
+import { SubpageWrapperComponent } from './components/subpage-wrapper/subpage-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { TableEmptyComponent } from './components/table-empty/table-empty.compon
     FluidLoadingComponent,
     ErrorHandlerComponent,
     TableEmptyComponent,
+    SubpageWrapperComponent,
   ],
   imports: [
     CommonModule,
@@ -45,10 +49,12 @@ import { TableEmptyComponent } from './components/table-empty/table-empty.compon
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatTooltipModule,
   ],
   exports: [
     MatDialogModule,
     MatSnackBarModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     NavigationComponent,
     ToolbarComponent,
@@ -58,6 +64,7 @@ import { TableEmptyComponent } from './components/table-empty/table-empty.compon
     FluidLoadingComponent,
     ErrorHandlerComponent,
     TableEmptyComponent,
+    SubpageWrapperComponent,
   ],
   providers: [MatSnackBarModule],
 })

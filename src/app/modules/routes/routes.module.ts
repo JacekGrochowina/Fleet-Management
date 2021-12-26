@@ -7,6 +7,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RoutesComponent } from './routes.component';
 import { RoutesTableComponent } from './components/routes-table/routes-table.component';
 import { AddEditRouteComponent } from './components/add-edit-route/add-edit-route.component';
+import { AddRouteFormComponent } from './components/add-route-form/add-route-form.component';
+import { AddRoutePageComponent } from './pages/add-route-page/add-route-page.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,9 +19,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [RoutesComponent, RoutesTableComponent, AddEditRouteComponent],
+  declarations: [
+    RoutesComponent,
+    RoutesTableComponent,
+    AddEditRouteComponent,
+    AddRouteFormComponent,
+    AddRoutePageComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -34,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatCheckboxModule,
   ],
   providers: [MatDatepickerModule],
 })

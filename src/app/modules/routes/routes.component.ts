@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AddEditMode } from 'src/app/shared/utils/enums/add-edit-mode.enum';
-import { AddEditRouteComponent } from './components/add-edit-route/add-edit-route.component';
-import { AddEditRouteDialogData } from './utils/interfaces/add-edit-route-dialog-data.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-routes',
@@ -10,17 +7,11 @@ import { AddEditRouteDialogData } from './utils/interfaces/add-edit-route-dialog
   styleUrls: ['./routes.component.scss'],
 })
 export class RoutesComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {}
 
-  openAddRouteDialog(): void {
-    this.dialog.open(AddEditRouteComponent, {
-      data: {
-        mode: AddEditMode.add,
-      } as AddEditRouteDialogData,
-      width: '90%',
-      maxWidth: '500px',
-    });
+  goToAddRoute(): void {
+    this.router.navigate(['dodaj'], { relativeTo: this.route });
   }
 }

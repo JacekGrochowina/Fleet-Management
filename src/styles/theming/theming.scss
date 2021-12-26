@@ -13,8 +13,12 @@
   --primary: #{$primary};
   --accent: #{$accent};
   --warn: #{$warn};
+  --danger: rgb(185, 35, 36);
+  --warning: rgb(240, 93, 40);
+  --success: rgb(35, 186, 81);
   --light: rgb(255, 255, 255, 0.5);
   --ligth2: rgba(0, 0, 0, 0.54);
+  --ligth3: rgba(0, 0, 0, 0.12);
   --active: rgba(0, 0, 0, 0.04);
 }
 
@@ -27,7 +31,11 @@
   --primary: #{$primary};
   --accent: #{$accent};
   --warn: #{$warn};
+  --danger: rgb(185, 35, 36);
+  --warning: rgb(240, 93, 40);
+  --success: rgb(35, 186, 81);
   --light: rgb(255, 255, 255, 0.5);
   --ligth2: rgba(255, 255, 255, 0.7);
+  --ligth3: rgba(255, 255, 255, 0.12);
   --active: rgba(255, 255, 255, 0.04);
 }

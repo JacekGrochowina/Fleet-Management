@@ -1,0 +1,22 @@
+.destination {
+  &__arrow {
+    height: 15px;
+    width: 15px;
+    font-size: 15px;
+    transform: translateY(3px);
+  }
+  &__incomeExpedition,
+  &__expensesExpedition,
+  &__profitExpedition {
+    font-weight: 500;
+  }
+  &__incomeExpedition {
+    color: var(--warning);
+  }
+  &__expensesExpedition {
+    color: var(--danger);
+  }
+  &__profitExpedition {
+    color: var(--success);
+  }
+}
